@@ -1,0 +1,22 @@
+infos:
+  - name: console
+    icon: fav.ico
+    type: command
+    process-name: console
+    params:
+      port: 3306
+      host: 0.0.0.0
+      中文: 111
+    pipe:
+      - name: run
+        type: OG # OG (Open GUI)  DC (Docker Client) DS (Docker Server) DF (Docker Full) CC(Command Client) CS(Command Server)
+        script:
+          - run.sh
+      - name: /Users/chennwanlin/Documents/demo/super-pipeline/examples/pipe/basic/dist/index.js
+    plugin:
+      - name: /Users/chennwanlin/Documents/demo/super-pipeline/examples/plugin/basic/dist/index.js
+        server: user-report
+
+
+
+
