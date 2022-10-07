@@ -6,6 +6,7 @@ class TaskData {
 	public data: any;
 	public list: any;
     static data: any;
+    public static baseDir: string;
 
     static getData(){
         return this.data
@@ -25,8 +26,9 @@ class TaskData {
         }
     }
 
-    static init(filePath: Path): void {
-        const {list}: Read = new Read(filePath)
+    static init(baseDir: string, filePath: Path): void {
+        this.baseDir = baseDir;
+        const {list}: Read = new Read(baseDir, filePath)
         this.data = list
     }
 }

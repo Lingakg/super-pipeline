@@ -1,6 +1,6 @@
 const {default: Pipe} = require("../../../dist/index");
 
-const tool = new Pipe('./.pipe/main.yaml')
+const tool = new Pipe(__dirname, '/test/.pipe/main.yaml')
 tool.getList()
 const myConsole = tool.getInstance('console')
 myConsole.tap.onTap('willStart', (data, context)=>{

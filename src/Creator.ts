@@ -7,12 +7,12 @@ class Creator {
     context: any
     tap: any
 
-    constructor(name: string) {
+    constructor(baseDir:string, name: string) {
         // @ts-ignore
         const [_, tool] = TaskData.getTool(name)
         this.context = new Context(tool)
         this.tap = new Tap(tool, this.context)
-        return new TaskInstance(tool, this.context, this.tap)
+        return new TaskInstance(baseDir, tool, this.context, this.tap)
     }
 }
 

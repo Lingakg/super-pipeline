@@ -1,4 +1,5 @@
 import TaskError from "./TaskError"
+import * as path from "path";
 
 class Starter {
 	public name: any;
@@ -8,8 +9,10 @@ class Starter {
     after: any
     instance: any
     index = 0
+    baseDir: string
 
-    constructor(instance: object, pipe: any) {
+    constructor(baseDir: string, instance: object, pipe: any) {
+        this.baseDir = baseDir
         this.main = pipe
         this.instance = instance
     }
@@ -37,8 +40,8 @@ class Starter {
             // todo run .sh
             this.next()
         } else {
-            console.log(__dirname)
-            import(name).then(({default: pipe})=>{
+            const baseDir = this.baseDir
+            import(path.join(baseDir,'..',name)).then(({default: pipe})=>{
                 this.runPipeItem(pipe)
             })
         }
@@ -53,7 +56,8 @@ class Starter {
     runPipeItem(pipe: any) {
         // @ts-ignore
         const run = pipe(this.instance.context)
-        run(()=>{console.log('next')
+        run(()=>{
+            console.log('next')
             this.next()
         })
     }

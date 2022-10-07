@@ -10,8 +10,10 @@ class TaskInstance {
     tap: any;
     context: any;
     info: any;
+    baseDir: string
 
-    constructor(info: any, context: any, tap: any) {
+    constructor(baseDir: string,info: any, context: any, tap: any) {
+        this.baseDir = baseDir
         const {name, plugin} = info
         this.info = info
         this.name = name
@@ -22,13 +24,13 @@ class TaskInstance {
     }
 
     loadPlugin(info: any){
-        const plugin = new Plugin()
+        const plugin = new Plugin(this.baseDir)
         plugin.install(info, this)
     }
 
     run(){
         const {pipe, before, after} = this.info
-        const starter = new Starter(this, pipe)
+        const starter = new Starter(this.baseDir, this, pipe)
         starter.setAfter(after)
         starter.setBefore(before)
         starter.run()

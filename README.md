@@ -6,18 +6,50 @@ Task execution pipeline, yaml configuration file method, support independent npm
     npm i super-pipeline
 
 ###  Quick Start
+```yaml
+#main.yaml
+tasks:
+  - type: Tools
+    provides:
+      - /.pipe/tools.yaml
+
+#tools.yaml
+infos:
+  - name: console
+    icon: fav.ico
+    type: command
+    process-name: console
+    params:
+      port: 3306
+      host: 0.0.0.0
+      中文: 111
+    pipe:
+      - name: run
+        type: OG # OG (Open GUI)  DC (Docker Client) DS (Docker Server) DF (Docker Full) CC(Command Client) CS(Command Server)
+        script:
+          - run.sh
+      - name: ../../pipe/basic/dist/index.js
+    plugin:
+      - name: ../../plugin/basic/dist/index.js
+        server: user-report
+```
 ``` typescript
+// index.js
 import Pipe from 'super-pipeline';
 
-const tool = new Pipe('/Users/chennwanlin/Documents/demo/super-pipeline/examples/use/basic/.pipe/main.yaml')
+const tool = new Pipe(__dirname, '/.pipe/main.yaml')
 tool.getList()
 const myConsole = tool.getInstance('console')
 myConsole.tap.onTap('willStart', (data: any, context: any)=>{
-console.log('program',data, context)
+  console.log('program',data, context)
 })
 
-
 myConsole.tap.emit('willStart', 'test')
+
+setTimeout(()=>{
+  myConsole.run()
+}, 1000)
+
 ```
 
 ### Pipe

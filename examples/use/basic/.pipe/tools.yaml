@@ -12,9 +12,9 @@ infos:
         type: OG # OG (Open GUI)  DC (Docker Client) DS (Docker Server) DF (Docker Full) CC(Command Client) CS(Command Server)
         script:
           - run.sh
-      - name: /Users/chennwanlin/Documents/demo/super-pipeline/examples/pipe/basic/dist/index.js
+      - name: ../../pipe/basic/dist/index.js
     plugin:
-      - name: /Users/chennwanlin/Documents/demo/super-pipeline/examples/plugin/basic/dist/index.js
+      - name: ../../plugin/basic/dist/index.js
         server: user-report
 
 

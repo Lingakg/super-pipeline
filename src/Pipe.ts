@@ -5,8 +5,9 @@ import {Path, ToolName} from "./type/Pipe";
 class Pipe {
 
 
-    constructor(filePath: Path) {
-        TaskData.init(filePath)
+    constructor(baseDir: string, filePath: Path) {
+        Instances.baseDir = baseDir
+        TaskData.init(baseDir, filePath)
     }
 
 

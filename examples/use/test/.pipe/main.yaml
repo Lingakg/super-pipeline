@@ -1,7 +1,7 @@
 tasks:
     - type: Tools
       provides:
-        - ./.pipe/tools.yaml
+        - /test/.pipe/tools.yaml
 
 
 
