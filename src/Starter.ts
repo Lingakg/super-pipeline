@@ -35,15 +35,22 @@ class Starter {
             return
         }
 
-        const {name, type} = this.main[this.index]
+        const current = this.main[this.index]
+        const {name, type} = current
         if (type) {
             // todo run .sh
             this.next()
         } else {
             const baseDir = this.baseDir
-            import(path.join(baseDir,'..',name)).then(({default: pipe})=>{
-                this.runPipeItem(pipe)
-            })
+            if(/\//.test(name)){
+                import(path.join(baseDir,'..',name)).then(({default: pipe})=>{
+                    this.runPipeItem(pipe, current)
+                })
+            }else {
+                import(name).then(({default: pipe})=>{
+                    this.runPipeItem(pipe, current)
+                })
+            }
         }
     }
 
@@ -53,9 +60,9 @@ class Starter {
         this.runPipe()
     }
 
-    runPipeItem(pipe: any) {
+    runPipeItem(pipe: any, option: any) {
         // @ts-ignore
-        const run = pipe(this.instance.context)
+        const run = pipe(this.instance.context, option)
         run(()=>{
             console.log('next')
             this.next()
