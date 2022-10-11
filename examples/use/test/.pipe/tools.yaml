@@ -13,9 +13,9 @@ infos:
         script:
           - run.sh
       - name: ../pipe/basic/dist/index.js
-    plugin:
-      - name: ../plugin/basic/dist/index.js
-        server: user-report
+#    plugin:
+#      - name: ../plugin/basic/dist/index.js
+#        server: user-report
 
 
 

@@ -1,6 +1,8 @@
 import {getLogger} from "log4js"
 
-var logger = getLogger();
+const logger = getLogger();
+
+logger.level = "info";
 
 if(process.env.debug){
     logger.level = "debug";
