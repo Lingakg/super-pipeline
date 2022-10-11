@@ -1,3 +1,6 @@
+import util from "./util";
+
+
 class Context {
     // @ts-ignore
     constructor(config: any) {
@@ -9,6 +12,7 @@ class Context {
     name = ""
     processName = ""
     type = ""
+    util = util
 }
 
 export default Context
